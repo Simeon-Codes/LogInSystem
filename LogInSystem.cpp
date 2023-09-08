@@ -6,68 +6,68 @@ using namespace std;
 
 bool IsLoggedIn()
 {
-    string username, password, un, pwd;
+  string username, password, un, pwd;
 
-    cout << "Enter username: "; cin >> username;
-    cout << "Enter password: "; cin >> password;
+  cout << "Enter username: "; cin >> username;
+  cout << "Enter password: "; cin >> password;
 
-    ifstream read("data\\" + username + ".txt");
+  ifstream read("data\\" + username + ".txt");
 
-    getline(read, un);
-    getline(read, pwd);
+  getline(read, un);
+  getline(read, pwd);
 
-    if (un == username && pwd == password)
-    {
-      return true;
-    }
+  if (un == username && pwd == password)
+  {
+    return true;
+  }
 
-    else
-    {
-      return false;
-    }
+  else
+  {
+    return false;
+  }
 }
 
 int main()
 {
+   
+  int choice;
 
- int choice;
+  cout << "1: Register\n2: Login\nYour Choice: "; cin >> choice;
 
- cout << "1: Register\n2: Login\nYour Choice: "; cin >> choice;
+  if (choice == 1)
+  {
+    string username,password;
 
-    if (choice == 1)
+    cout << "Select a username: "; cin >> username;
+    cout << "Select a password: "; cin >> password;
+
+    ofstream file;
+    file.open("data\\" + username + ".txt");
+
+    file << username << endl << password;
+    file.close();
+
+    main();
+  }
+
+  else if(choice == 2)
+  {
+    bool status = IsLoggedIn();
+
+    if (!status)
     {
-        string username,password;
+     cout << "False Login!" << endl;
+     system("PAUSE");
 
-        cout << "Select a username: "; cin >> username;
-        cout << "Select a password: "; cin >> password;
-
-        ofstream file;
-        file.open("data\\" + username + ".txt");
-
-        file << username << endl << password;
-        file.close();
-
-        main();
+     return 0;
     }
 
-    else if(choice == 2)
+    else
     {
-        bool status = IsLoggedIn();
+     cout << "You are successfully logged in!" << endl;
+     system("PAUSE");
 
-        if (!status)
-        {
-          cout << "False Login!" << endl;
-          system("PAUSE");
-          return 0;
-
-        }
-
-        else
-        {
-          cout << "You are successfully logged in!" << endl;
-          system("PAUSE");
-
-          return 1;
-        }
+     return 1;
     }
+  }
 }
