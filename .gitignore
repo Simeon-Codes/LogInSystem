@@ -1,0 +1,5 @@
+data\\test.txt
+*.log
+.vscode
+*.out
+LogInSystem
